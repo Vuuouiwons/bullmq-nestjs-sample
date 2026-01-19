@@ -1,0 +1,41 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BullmqModule = void 0;
+const common_1 = require("@nestjs/common");
+const bullmq_1 = require("@nestjs/bullmq");
+const nestjs_1 = require("@bull-board/nestjs");
+const express_1 = require("@bull-board/express");
+const bullMQAdapter_1 = require("@bull-board/api/bullMQAdapter");
+let BullmqModule = class BullmqModule {
+};
+exports.BullmqModule = BullmqModule;
+exports.BullmqModule = BullmqModule = __decorate([
+    (0, common_1.Global)(),
+    (0, common_1.Module)({
+        imports: [
+            bullmq_1.BullModule.forRoot({
+                connection: {
+                    host: 'localhost',
+                    port: 6379
+                },
+            }),
+            bullmq_1.BullModule.registerQueue({ name: 'queue1' }, { name: 'queue2' }, { name: 'queue3' }),
+            nestjs_1.BullBoardModule.forFeature({ name: 'queue1', adapter: bullMQAdapter_1.BullMQAdapter }, { name: 'queue2', adapter: bullMQAdapter_1.BullMQAdapter }, { name: 'queue3', adapter: bullMQAdapter_1.BullMQAdapter }),
+            nestjs_1.BullBoardModule.forRoot({
+                route: '/admin/queues',
+                adapter: express_1.ExpressAdapter,
+            }),
+        ],
+        providers: [],
+        exports: [
+            bullmq_1.BullModule
+        ],
+    })
+], BullmqModule);
+//# sourceMappingURL=bullmq.module.js.map

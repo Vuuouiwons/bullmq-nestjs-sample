@@ -1,0 +1,113 @@
+{
+    "openapi": "3.0.0",
+    "paths": {
+        "/dummy/queue1": {
+            "post": {
+                "operationId": "DummyController_handleQueue1",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateJobDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Job successfully added to queue."
+                    }
+                },
+                "summary": "Add a job to Queue 1",
+                "tags": [
+                    "Dummy Queues"
+                ]
+            }
+        },
+        "/dummy/queue2": {
+            "post": {
+                "operationId": "DummyController_handleQueue2",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateJobDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Job successfully added to queue."
+                    }
+                },
+                "summary": "Add a job to Queue 2",
+                "tags": [
+                    "Dummy Queues"
+                ]
+            }
+        },
+        "/dummy/queue3": {
+            "post": {
+                "operationId": "DummyController_handleQueue3",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateJobDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Job successfully added to queue."
+                    }
+                },
+                "summary": "Add a job to Queue 3",
+                "tags": [
+                    "Dummy Queues"
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "BullMQ Sample",
+        "description": "BullMQ example for multiple queue and processors",
+        "version": "1.0",
+        "contact": {}
+    },
+    "tags": [],
+    "servers": [],
+    "components": {
+        "schemas": {
+            "CreateJobDto": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": "hello_i_am_baymax!",
+                        "description": "Any data"
+                    },
+                    "metadata": {
+                        "type": "object",
+                        "example": {
+                            "foo": "bar"
+                        },
+                        "description": "Additional metadata"
+                    }
+                },
+                "required": [
+                    "data",
+                    "metadata"
+                ]
+            }
+        }
+    }
+}
