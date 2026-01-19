@@ -3,8 +3,9 @@ import { BullModule } from '@nestjs/bullmq';
 import { BullBoardModule } from '@bull-board/nestjs'; // [NEW]
 import { ExpressAdapter } from '@bull-board/express'; // [NEW]
 import { BullMQAdapter } from '@bull-board/api/bullMQAdapter'; // [N
+import { dummyQueue } from 'src/res/dummy/dummy.queue';
 
-const QUEUES = ['queue1', 'queue2', 'queue3'];
+const QUEUES = [...dummyQueue];
 
 @Global()
 @Module({
