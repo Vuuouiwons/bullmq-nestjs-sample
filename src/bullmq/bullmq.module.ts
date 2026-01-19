@@ -4,6 +4,8 @@ import { BullBoardModule } from '@bull-board/nestjs'; // [NEW]
 import { ExpressAdapter } from '@bull-board/express'; // [NEW]
 import { BullMQAdapter } from '@bull-board/api/bullMQAdapter'; // [N
 
+const QUEUES = ['queue1', 'queue2', 'queue3'];
+
 @Global()
 @Module({
     imports: [
@@ -13,16 +15,8 @@ import { BullMQAdapter } from '@bull-board/api/bullMQAdapter'; // [N
                 port: 6379
             },
         }),
-        BullModule.registerQueue(
-            { name: 'queue1' },
-            { name: 'queue2' },
-            { name: 'queue3' },
-        ),
-        BullBoardModule.forFeature(
-            { name: 'queue1', adapter: BullMQAdapter },
-            { name: 'queue2', adapter: BullMQAdapter },
-            { name: 'queue3', adapter: BullMQAdapter },
-        ),
+        BullModule.registerQueue(...QUEUES.map(name => ({ name }))),
+        BullBoardModule.forFeature(...QUEUES.map(name => ({ name, adapter: BullMQAdapter }))),
         BullBoardModule.forRoot({
             route: '/admin/queues',
             adapter: ExpressAdapter,
@@ -30,7 +24,6 @@ import { BullMQAdapter } from '@bull-board/api/bullMQAdapter'; // [N
     ],
     providers: [
     ],
-    // Export these so AppModule can see the Service and the Queue
     exports: [
         BullModule
     ],
