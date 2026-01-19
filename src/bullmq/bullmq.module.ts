@@ -1,8 +1,8 @@
 import { Global, Module } from '@nestjs/common';
 import { BullModule } from '@nestjs/bullmq';
-import { BullBoardModule } from '@bull-board/nestjs'; // [NEW]
-import { ExpressAdapter } from '@bull-board/express'; // [NEW]
-import { BullMQAdapter } from '@bull-board/api/bullMQAdapter'; // [N
+import { BullBoardModule } from '@bull-board/nestjs';
+import { ExpressAdapter } from '@bull-board/express';
+import { BullMQAdapter } from '@bull-board/api/bullMQAdapter';
 import { dummyQueue } from 'src/res/dummy/dummy.queue';
 
 const QUEUES = [...dummyQueue];
